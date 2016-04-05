@@ -2,16 +2,11 @@
 #include <QString>
 #include <QDebug>
 
-#include <windef.h>
-#include "VMProtectSDK.h"
-
 // 2.1 字符串类
 //      a. qt的调试输出，使用qDebug。
 //      b. qDebug默认最后有换行了。
 void test_QString()
 {
-    VMProtectBegin("test_QString");
-
     // 2.1.1 操作字符串
     //  a. 拼接，+，+=
     qDebug()<<endl<<"2.1.1 操作字符串";
@@ -110,44 +105,11 @@ void test_QString()
     qDebug()<<QString().isEmpty();
     qDebug()<<QString("").isNull();
     qDebug()<<QString("").isEmpty();
-
-    VMProtectEnd();
-}
-
-// 2.2 容器类
-//      a. QWidget和QDialog等不能存储在容器中，（可存储的必须是：有默认构造函数、拷贝构造函数和赋值操作运算符函数）。
-//      b. 支持Java、STL两种风格的迭代器。
-//      c. 能通STL的算法一起使用，自称效率更胜一筹。
-void test_QContainer()
-{
-//    VMProtectBegin("test_QContainer");
-    VMProtectBegin(__FUNCTION__);
-
-    qDebug()<<endl<<"2.2.1 test_QContainer"<<endl;
-    QList<int> list;
-    list<<1<<2<<3<<4<<5;
-
-    // java 调用方式
-    qDebug()<<" java 调用方式";
-    QListIterator<int> i(list);
-    for(;i.hasNext();)
-        qDebug()<<i.next();
-    // c++ 调用方式
-    qDebug()<<endl<<" c++ 调用方式";
-    QList<int>::iterator iter = list.begin();
-    while(iter != list.end())
-    {
-        qDebug()<<*iter;
-        ++iter;
-    }
-
-    VMProtectEnd();
 }
 
 int main(int argc, char *argv[])
 {
-//    test_QString();
-    test_QContainer();
+    test_QString();
 
     return 0;
 }

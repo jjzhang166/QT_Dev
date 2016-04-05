@@ -4,9 +4,14 @@
 #
 #-------------------------------------------------
 
-TEMPLATE = subdirs
+QT       += core
 
-SUBDIRS +=  CH201 \
-            CH202 \
-            CH203 \
-            CH204 \
+QT       -= gui
+
+TARGET = CH204
+CONFIG   += console
+CONFIG   -= app_bundle
+
+TEMPLATE = app
+
+SOURCES += main.cpp
