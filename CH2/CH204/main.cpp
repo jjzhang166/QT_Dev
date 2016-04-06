@@ -54,6 +54,7 @@ void test_QRegexp()
         qDebug() << rx.pos(2);              // 2
     }
 }
+
 int main(int argc, char *argv[])
 {
     test_Algorithms();
